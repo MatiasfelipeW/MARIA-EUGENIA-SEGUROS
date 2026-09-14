@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>María Eugenia Restrepo — Protege lo que más amas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#FDF9F7;
+  --ink-2:#FFFFFF;
+  --ink-3:#F7EAEB;
+  --line:rgba(90,70,75,.12);
+  --cream:#3D3438;
+  --cream-2:#E8D5D8;
+  --muted:#9A8A8E;
+  --clay:#D48A97;
+  --clay-2:#F3BCC6;
+  --clay-3:#B96A78;
+  --blush:#F7E7EA;
+  --radius:26px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --nav-h:76px;
+  --shadow-sm:0 1px 2px rgba(90,70,75,.03),0 8px 24px rgba(90,70,75,.05);
+  --shadow-md:0 12px 40px rgba(190,130,140,.12);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--ink);
+  color:var(--cream);
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body.is-loading{overflow:hidden}
+
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+::selection{background:var(--clay-2);color:var(--cream)}
+
+/* ============ TYPE ============ */
+.display{
+  font-family:'Fraunces',Georgia,serif;
+  font-optical-sizing:auto;
+  font-variation-settings:"SOFT" 0,"WONK" 1;
+  font-weight:400;line-height:.94;letter-spacing:-.035em;
+}
+.display em{font-style:italic;font-weight:300;color:var(--clay)}
+
+/* ============ LAYOUT ============ */
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+section{position:relative}
+.light{
+  background:var(--blush);
+  color:var(--cream);
+  border-radius:44px;
+  margin:0 12px;
+}
+.light .display em{color:var(--clay-3)}
+
+/* ============ GRAIN ============ */
+.grain{
+  position:fixed;inset:-150%;
+  z-index:9000;pointer-events:none;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(8) infinite;
+  mix-blend-mode:multiply;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}
+  10%{transform:translate(-4%,-4%)}
+  30%{transform:translate(3%,-6%)}
+  50%{transform:translate(-5%,4%)}
+  70%{transform:translate(4%,5%)}
+  90%{transform:translate(-3%,2%)}
+}
+
+/* ============ CURSOR ============ */
+.cursor,.cursor-dot{
+  position:fixed;top:0;left:0;
+  border-radius:50%;pointer-events:none;
+  z-index:9500;will-change:transform;
+}
+.cursor{
+  width:36px;height:36px;
+  border:1.5px solid rgba(61,52,56,.32);
+  transition:width .3s var(--ease),height .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease);
+  margin:-18px 0 0 -18px;
+}
+.cursor-dot{
+  width:5px;height:5px;background:#3D3438;
+  margin:-2.5px 0 0 -2.5px;
+}
+.cursor.grow{
+  width:70px;height:70px;margin:-35px 0 0 -35px;
+  background:rgba(212,138,151,.18);
+  border-color:transparent;
+}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-dot{display:none}}
+
+/* ============ PROGRESS ============ */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--clay),var(--clay-3));
+  z-index:9200;transition:width .1s linear;
+}
+
+/* ============ PRELOADER ============ */
+#loader{
+  position:fixed;inset:0;
+  z-index:9800;
+  background:var(--ink);
+  display:grid;place-items:center;
+  transition:transform 1s var(--ease),opacity .6s ease;
+}
+#loader.done{transform:translateY(-101%);opacity:0;pointer-events:none}
+
+.ld-inner{text-align:center;width:min(340px,80vw)}
+.ld-shield{width:82px;height:96px;margin:0 auto 30px}
+.ld-shield path{
+  fill:none;
+  stroke:var(--clay);
+  stroke-width:2.5;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:400;stroke-dashoffset:400;
+  animation:draw 1.9s var(--ease) forwards;
+}
+.ld-shield path.check{
+  stroke:var(--cream);
+  stroke-width:3.5;
+  stroke-dasharray:60;stroke-dashoffset:60;
+  animation:draw 0.7s var(--ease) 1.3s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.ld-name{
+  font-family:'Fraunces',serif;
+  font-size:1.05rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--cream);
+  opacity:0;animation:fadeUp .8s var(--ease) .5s forwards;
+}
+.ld-sub{
+  font-size:.68rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+  margin-top:10px;opacity:0;
+  animation:fadeUp .8s var(--ease) .7s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.ld-count{
+  position:absolute;bottom:34px;right:34px;
+  font-family:'Fraunces',serif;
+  font-size:clamp(3rem,9vw,5.5rem);line-height:1;
+  color:rgba(61,52,56,.06);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;
+  height:var(--nav-h);z-index:8800;
+  display:flex;align-items:center;
+  transition:background .4s ease,backdrop-filter .4s ease,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+.nav.stuck{
+  background:rgba(253,249,247,.82);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-bottom-color:var(--line);
+}
+.nav-inner{
+  width:min(1240px,100% - 40px);margin-inline:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-mark{
+  width:36px;height:36px;display:grid;place-items:center;
+  border-radius:50%;background:var(--clay);color:#fff;font-size:15px;
+  box-shadow:0 0 0 0 rgba(212,138,151,.5);
+  animation:pulseRing 3.4s infinite;
+}
+@keyframes pulseRing{
+  0%{box-shadow:0 0 0 0 rgba(212,138,151,.5)}
+  70%{box-shadow:0 0 0 14px rgba(212,138,151,0)}
+  100%{box-shadow:0 0 0 0 rgba(212,138,151,0)}
+}
+.logo-txt{line-height:1.1;font-size:.9rem;font-weight:600;letter-spacing:-.01em}
+.logo-txt em{
+  display:block;font-style:normal;font-size:.66rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);font-weight:400;
+}
+.nav-links{display:flex;gap:34px;font-size:.85rem;font-weight:400}
+.nav-links a{position:relative;color:rgba(61,52,56,.7);transition:color .25s}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-6px;
+  width:100%;height:1px;background:var(--clay);
+  transform:scaleX(0);transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.btn-wa{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:10px 20px;
+  border:1px solid var(--line);border-radius:100px;
+  font-size:.82rem;font-weight:500;
+  transition:.35s var(--ease);
+  background:rgba(255,255,255,.6);
+}
+.btn-wa i{color:#25D366;font-size:1rem}
+.btn-wa:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.btn-wa:hover i{color:#128C7E}
+
+@media(max-width:900px){.nav-links{display:none}}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  padding:calc(var(--nav-h) + 40px) 0 60px;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  width:70vw;height:70vw;max-width:900px;max-height:900px;
+  right:-18vw;top:-14vw;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,rgba(243,188,198,.6),rgba(243,188,198,.15) 45%,transparent 70%);
+  filter:blur(30px);
+  animation:float 14s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-4%,5%) scale(1.08)}
+}
+.hero-lines{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:110px 110px;
+  mask-image:radial-gradient(ellipse at 30% 45%,#000 10%,transparent 72%);
+  -webkit-mask-image:radial-gradient(ellipse at 30% 45%,#000 10%,transparent 72%);
+  opacity:.55;pointer-events:none;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.25fr .75fr;
+  gap:50px;align-items:center;position:relative;z-index:2;
+}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:56px}}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:28px;
+}
+.eyebrow .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--clay);
+  animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-optical-sizing:auto;
+  font-variation-settings:"SOFT" 0,"WONK" 1;
+  font-size:clamp(3rem,10.5vw,8.2rem);
+  line-height:.92;letter-spacing:-.04em;font-weight:400;
+}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .line>span{
+  display:block;transform:translateY(110%);
+  transition:transform 1.15s var(--ease);
+}
+body.is-ready .hero h1 .line:nth-child(1)>span{transition-delay:.10s}
+body.is-ready .hero h1 .line:nth-child(2)>span{transition-delay:.20s}
+body.is-ready .hero h1 .line:nth-child(3)>span{transition-delay:.30s}
+body.is-ready .hero h1 .line>span{transform:translateY(0)}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--clay-3)}
+
+.hero-sub{
+  max-width:44ch;margin-top:30px;
+  font-size:clamp(.98rem,1.4vw,1.1rem);font-weight:300;
+  color:rgba(61,52,56,.68);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .9s var(--ease) .55s,transform .9s var(--ease) .55s;
+}
+body.is-ready .hero-sub{opacity:1;transform:none}
+
+.hero-cta{
+  display:flex;flex-wrap:wrap;gap:14px;margin-top:38px;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .9s var(--ease) .7s,transform .9s var(--ease) .7s;
+}
+body.is-ready .hero-cta{opacity:1;transform:none}
+
+.btn{
+  display:inline-flex;align-items:center;gap:11px;
+  padding:15px 30px;border-radius:100px;
+  font-size:.88rem;font-weight:500;
+  position:relative;overflow:hidden;
+  transition:.4s var(--ease);
+  will-change:transform;
+}
+.btn-primary{background:var(--clay-2);color:var(--cream)}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:var(--clay-3);
+  transform:translateY(101%);
+  transition:transform .5s var(--ease);
+  z-index:0;
+}
+.btn-primary:hover::before{transform:translateY(0)}
+.btn-primary span,.btn-primary i{position:relative;z-index:1;transition:color .4s}
+.btn-primary:hover span,.btn-primary:hover i{color:#fff}
+.btn-primary i{font-size:1.05rem}
+
+.btn-ghost{
+  border:1px solid rgba(90,70,75,.2);
+  color:var(--cream);
+  background:rgba(255,255,255,.5);
+}
+.btn-ghost:hover{border-color:var(--clay);background:rgba(243,188,198,.25)}
+.btn-ghost i{font-size:.75rem;transition:transform .4s var(--ease)}
+.btn-ghost:hover i{transform:translateX(5px)}
+
+/* orbit badge */
+.hero-visual{display:grid;place-items:center;position:relative}
+.orbit{
+  position:relative;
+  width:min(390px,80vw);
+  aspect-ratio:1;
+  display:grid;place-items:center;
+  opacity:0;transform:scale(.85);
+  transition:opacity 1.2s var(--ease) .5s,transform 1.2s var(--ease) .5s;
+}
+body.is-ready .orbit{opacity:1;transform:none}
+.orbit svg{
+  position:absolute;inset:0;width:100%;height:100%;
+  animation:spin 26s linear infinite;
+  z-index:1;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit text{
+  font-family:'Inter',sans-serif;
+  font-size:9.4px;letter-spacing:.36em;
+  fill:rgba(61,52,56,.38);
+  text-transform:uppercase;
+}
+
+.orbit-core{
+  width:70%;
+  aspect-ratio:1;
+  border-radius:50%;
+  overflow:hidden;
+  background:radial-gradient(circle at 35% 30%,#FFFFFF,#FBEEF0 70%);
+  border:3px solid rgba(212,138,151,.45);
+  box-shadow:0 24px 60px rgba(212,138,151,.4),inset 0 0 40px rgba(255,255,255,.7);
+  position:relative;
+  z-index:2;
+}
+.orbit-core img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 20%;
+  transition:transform .8s var(--ease);
+}
+.orbit:hover .orbit-core img{
+  transform:scale(1.06);
+}
+.orbit-core::after{
+  content:'';
+  position:absolute;inset:12px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.35);
+  pointer-events:none;
+}
+
+.scroll-cue{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--muted);
+  opacity:0;transition:opacity 1s ease 1.4s;
+}
+body.is-ready .scroll-cue{opacity:1}
+.scroll-cue .bar{
+  width:1px;height:44px;
+  background:linear-gradient(var(--clay),transparent);
+  animation:cue 2s ease-in-out infinite;
+}
+@keyframes cue{0%,100%{transform:scaleY(.35);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ============ MARQUEE ============ */
+.marquee{
+  background:var(--clay-2);
+  color:var(--cream);
+  padding:17px 0;overflow:hidden;white-space:nowrap;
+  transform:rotate(-1.4deg) scale(1.04);
+  margin:-6px 0 0;
+}
+.mq-track{
+  display:inline-flex;align-items:center;gap:34px;
+  animation:mq 34s linear infinite;
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.05rem,2.4vw,1.7rem);
+  letter-spacing:-.01em;
+  padding-right:34px;
+}
+.mq-track span{font-weight:400}
+.mq-track span:nth-child(even){font-style:italic;font-weight:300;opacity:.62}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ SECTION HEADS ============ */
+.sec-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:30px;flex-wrap:wrap;margin-bottom:52px;
+}
+.sec-num{
+  font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--clay-3);margin-bottom:16px;display:block;
+}
+.sec-title{
+  font-family:'Fraunces',serif;
+  font-optical-sizing:auto;
+  font-variation-settings:"SOFT" 0,"WONK" 1;
+  font-size:clamp(2.1rem,5.2vw,4rem);
+  line-height:1;letter-spacing:-.035em;font-weight:400;
+}
+.sec-title em{font-style:italic;font-weight:300;color:var(--clay-3)}
+.sec-desc{max-width:34ch;font-size:.92rem;font-weight:300;color:var(--muted)}
+
+/* ============ BENTO SERVICES ============ */
+.services{padding:120px 0 40px}
+.bento{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:minmax(178px,auto);gap:14px;
+}
+.card{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px;background:var(--ink-2);
+  overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:border-color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease);
+  opacity:0;transform:translateY(34px);
+  cursor:pointer;
+  box-shadow:var(--shadow-sm);
+}
+.card.in{
+  opacity:1;transform:none;
+  transition:opacity .85s var(--ease),transform .85s var(--ease),border-color .45s var(--ease),box-shadow .45s var(--ease);
+}
+.card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(243,188,198,.4),transparent 62%);
+  opacity:0;transition:opacity .45s;pointer-events:none;
+}
+.card:hover::before{opacity:1}
+.card:hover{
+  border-color:rgba(212,138,151,.55);
+  box-shadow:0 18px 44px rgba(190,130,140,.16);
+  transform:translateY(-4px);
+}
+
+.card-ico{
+  width:48px;height:48px;border-radius:14px;
+  display:grid;place-items:center;
+  background:rgba(243,188,198,.4);
+  border:1px solid rgba(212,138,151,.28);
+  color:var(--clay-3);
+  font-size:1.15rem;
+  transition:.5s var(--ease);
+}
+.card:hover .card-ico{background:var(--clay-3);color:#fff;transform:translateY(-4px) rotate(-6deg)}
+.card h3{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:1.22rem;letter-spacing:-.02em;line-height:1.15;
+  margin-bottom:5px;color:var(--cream);
+}
+.card p{font-size:.79rem;font-weight:300;color:var(--muted)}
+.card .tag{
+  display:inline-block;margin-top:11px;
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 11px;border-radius:100px;
+  background:rgba(243,188,198,.45);color:var(--clay-3);
+  border:1px solid rgba(212,138,151,.3);
+}
+.card .arrow{
+  position:absolute;top:26px;right:26px;
+  color:var(--muted);font-size:.8rem;
+  opacity:0;transform:translate(-8px,8px);
+  transition:.45s var(--ease);
+}
+.card:hover .arrow{opacity:1;transform:none;color:var(--clay-3)}
+
+.card.big{grid-column:span 2;grid-row:span 2;padding:36px}
+.card.big h3{font-size:clamp(1.7rem,3.2vw,2.5rem);letter-spacing:-.03em}
+.card.big p{font-size:.88rem;max-width:30ch;margin-top:8px}
+.card.wide{grid-column:span 2}
+.card.accent{
+  background:linear-gradient(140deg,#FCE9EC 0%,#F6D5DB 100%);
+  border-color:rgba(212,138,151,.4);
+  justify-content:center;
+}
+.card.accent h3{font-size:1.35rem}
+.card.accent .mini{
+  font-size:.74rem;color:var(--clay-3);margin-top:10px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+
+@media(max-width:960px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .card.big{grid-column:span 2;grid-row:auto}
+  .card.wide{grid-column:span 2}
+}
+@media(max-width:560px){
+  .bento{grid-template-columns:1fr}
+  .card.big,.card.wide{grid-column:span 1}
+}
+
+/* ============ PROCESO ============ */
+.proceso{padding:110px 0;margin-top:70px}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-top:60px;border-top:1px solid rgba(61,52,56,.14);
+}
+.step{
+  padding:36px 26px 10px 0;
+  border-right:1px solid rgba(61,52,56,.14);
+  position:relative;
+  opacity:0;transform:translateY(26px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+}
+.step.in{opacity:1;transform:none}
+.step:last-child{border-right:0}
+.step-n{
+  font-family:'Fraunces',serif;
+  font-size:2.4rem;font-weight:300;
+  color:var(--clay-3);line-height:1;margin-bottom:20px;display:block;
+}
+.step h4{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:1.18rem;letter-spacing:-.02em;margin-bottom:9px;
+  color:var(--cream);
+}
+.step p{font-size:.85rem;font-weight:300;color:#7A6A6E;line-height:1.6}
+.step::after{
+  content:'';position:absolute;top:-1px;left:0;height:1px;width:0;
+  background:var(--clay-3);transition:width .9s var(--ease) .15s;
+}
+.step.in::after{width:100%}
+
+@media(max-width:900px){
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(3),.step:nth-child(4){border-top:1px solid rgba(61,52,56,.14)}
+}
+@media(max-width:540px){
+  .steps{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:1px solid rgba(61,52,56,.14)}
+}
+
+/* ============ QUOTE ============ */
+.quote{padding:120px 0;text-align:center}
+.quote-mark{
+  font-family:'Fraunces',serif;
+  font-size:5rem;line-height:0;
+  color:var(--clay);opacity:.55;
+  display:block;margin-bottom:26px;
+}
+.quote p{
+  font-family:'Fraunces',serif;
+  font-optical-sizing:auto;
+  font-variation-settings:"SOFT" 0,"WONK" 1;
+  font-size:clamp(1.5rem,4.2vw,3.1rem);
+  line-height:1.16;letter-spacing:-.03em;font-weight:300;
+  max-width:20ch;margin-inline:auto;color:var(--cream);
+}
+.quote p em{font-style:italic;color:var(--clay-3)}
+.quote-author{
+  margin-top:34px;display:inline-flex;align-items:center;gap:13px;
+  font-size:.8rem;color:var(--muted);
+}
+.quote-author .av{
+  width:44px;height:44px;border-radius:50%;
+  overflow:hidden;
+  border:2px solid rgba(212,138,151,.4);
+  box-shadow:0 6px 18px rgba(190,130,140,.2);
+  flex-shrink:0;
+}
+.quote-author .av img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 20%;
+}
+
+/* ============ ADICIONALES ============ */
+.extra{padding:110px 0 60px}
+.extra-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.panel{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:40px;background:var(--ink-2);
+  position:relative;overflow:hidden;min-height:330px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  opacity:0;transform:translateY(30px);
+  transition:opacity .85s var(--ease),transform .85s var(--ease),border-color .45s,box-shadow .45s;
+  box-shadow:var(--shadow-sm);
+}
+.panel.in{opacity:1;transform:none}
+.panel:hover{
+  border-color:rgba(212,138,151,.5);
+  box-shadow:0 18px 44px rgba(190,130,140,.14);
+  transform:translateY(-4px);
+}
+.panel-ico{font-size:1.7rem;color:var(--clay-3);margin-bottom:22px}
+.panel h3{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  letter-spacing:-.03em;line-height:1.05;margin-bottom:12px;
+  color:var(--cream);
+}
+.panel p{font-size:.88rem;font-weight:300;color:var(--muted);max-width:34ch}
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  margin-top:26px;align-self:flex-start;
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:8px 16px;border-radius:100px;
+  border:1px solid rgba(212,138,151,.4);
+  background:rgba(243,188,198,.35);
+  color:var(--clay-3);
+}
+.status .pip{
+  width:6px;height:6px;border-radius:50%;background:var(--clay-3);
+  animation:blink 1.8s infinite;
+}
+.panel-ghost{
+  position:absolute;right:-40px;bottom:-70px;
+  font-family:'Fraunces',serif;
+  font-size:13rem;line-height:1;font-weight:300;
+  color:rgba(61,52,56,.045);
+  pointer-events:none;user-select:none;
+}
+
+.panel-link{
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+}
+.panel-link:hover{
+  border-color:rgba(212,138,151,.7);
+  box-shadow:0 22px 50px rgba(190,130,140,.22);
+  transform:translateY(-6px);
+}
+.panel-link .panel-ico{
+  transition:transform .5s var(--ease),background .4s var(--ease),color .4s var(--ease);
+}
+.panel-link:hover .panel-ico{
+  background:var(--clay-3);
+  color:#fff;
+  transform:translateY(-4px) rotate(-8deg);
+}
+.panel-link .panel-arrow{
+  position:absolute;top:34px;right:34px;
+  font-size:.85rem;color:var(--muted);
+  opacity:0;transform:translate(-8px,8px);
+  transition:.45s var(--ease);
+}
+.panel-link:hover .panel-arrow{
+  opacity:1;transform:none;color:var(--clay-3);
+}
+
+.status-live{
+  background:rgba(37,211,102,.14) !important;
+  border-color:rgba(37,211,102,.45) !important;
+  color:#128C7E !important;
+}
+.status-live .pip{
+  background:#25D366 !important;
+  animation:blink 1.6s infinite;
+}
+
+@media(max-width:840px){.extra-grid{grid-template-columns:1fr}}
+
+/* ============ CTA FINAL ============ */
+.cta{padding:70px 0 130px}
+.cta-box{
+  position:relative;overflow:hidden;
+  border-radius:44px;
+  padding:clamp(48px,8vw,96px) clamp(28px,6vw,80px);
+  background:linear-gradient(135deg,#FCE9EC 0%,#F5D2D9 50%,#FCE9EC 100%);
+  border:1px solid rgba(212,138,151,.35);
+  text-align:center;
+  box-shadow:0 24px 60px rgba(190,130,140,.14);
+}
+.cta-box::before{
+  content:'';position:absolute;
+  width:80%;height:150%;left:50%;top:-40%;transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgba(243,188,198,.55),transparent 62%);
+  filter:blur(40px);pointer-events:none;
+}
+.cta-box h2{
+  position:relative;
+  font-family:'Fraunces',serif;
+  font-optical-sizing:auto;font-variation-settings:"SOFT" 0,"WONK" 1;
+  font-size:clamp(2.1rem,6.4vw,4.6rem);
+  line-height:1;letter-spacing:-.04em;font-weight:400;
+  margin-bottom:22px;color:var(--cream);
+}
+.cta-box h2 em{font-style:italic;font-weight:300;color:var(--clay-3)}
+.cta-box p{
+  position:relative;max-width:46ch;margin:0 auto 40px;
+  font-weight:300;color:#6E5E62;
+  font-size:clamp(.94rem,1.4vw,1.05rem);
+}
+.cta-actions{position:relative;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-phone{
+  position:relative;
+  display:inline-flex;align-items:center;gap:12px;
+  margin-top:34px;
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.3rem,3.4vw,2rem);
+  letter-spacing:-.02em;
+  color:var(--cream);
+}
+.cta-phone i{color:#25D366;font-size:1.3rem}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:60px 0 34px}
+.f-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:40px;flex-wrap:wrap;padding-bottom:44px;
+}
+.f-brand{display:flex;gap:14px;align-items:flex-start;max-width:320px}
+.f-brand .logo-mark{flex-shrink:0}
+.f-brand strong{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:1.05rem;letter-spacing:-.02em;display:block;margin-bottom:6px;
+  color:var(--cream);
+}
+.f-brand p{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.6}
+.f-cols{display:flex;gap:70px;flex-wrap:wrap}
+.f-col h5{
+  font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin-bottom:16px;
+}
+.f-col a{
+  display:block;font-size:.85rem;font-weight:300;
+  color:rgba(61,52,56,.68);margin-bottom:11px;
+  transition:color .3s,transform .3s var(--ease);
+}
+.f-col a:hover{color:var(--clay-3);transform:translateX(4px)}
+
+.f-credit{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:22px;flex-wrap:wrap;
+}
+.f-copy{font-size:.74rem;color:var(--muted);letter-spacing:.02em}
+.f-made{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.78rem;color:var(--muted);
+  padding:9px 18px;border-radius:100px;
+  border:1px solid var(--line);
+  transition:.4s var(--ease);
+  background:rgba(255,255,255,.55);
+}
+.f-made:hover{
+  border-color:var(--clay);
+  color:var(--cream);
+  background:rgba(243,188,198,.35);
+  transform:translateY(-2px);
+}
+.f-made strong{color:var(--clay-3);font-weight:600;letter-spacing:.01em}
+.f-made i{font-size:.7rem}
+@media(max-width:640px){
+  .f-cols{gap:44px}
+  .f-credit{flex-direction:column;align-items:flex-start;text-align:left}
+}
+
+/* ============ REVEAL ============ */
+[data-reveal]{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease);
+}
+[data-reveal].in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  [data-reveal],.card,.panel,.step{opacity:1!important;transform:none!important}
+  .hero h1 .line>span{transform:none!important}
+}
+</style>
+</head>
+
+<body class="is-loading">
+
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="progress" id="progress"></div>
+
+<!-- ================= PRELOADER ================= -->
+<div id="loader">
+  <div class="ld-inner">
+    <svg class="ld-shield" viewBox="0 0 100 116" fill="none">
+      <path d="M50 4 L92 20 V60 C92 88 73 105 50 112 C27 105 8 88 8 60 V20 Z"/>
+      <path class="check" d="M34 58 L45 69 L68 45"/>
+    </svg>
+    <div class="ld-name">María Eugenia</div>
+    <div class="ld-sub">Asesoría en seguros</div>
+  </div>
+  <div class="ld-count" id="ldCount">0</div>
+</div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><i class="fas fa-shield-alt"></i></span>
+      <span class="logo-txt">María Eugenia Restrepo<em>Asesora de seguros</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#adicionales">Tienda &amp; Artículos</a>
+    </nav>
+    <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn-wa">
+      <i class="fab fa-whatsapp"></i> 301 589 1014
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-lines"></div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Asesoría personalizada · Colombia</div>
+
+      <h1>
+        <span class="line"><span>Protege</span></span>
+        <span class="line"><span>lo que más</span></span>
+        <span class="line"><span><em>amas</em>.</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        Te acompaño a encontrar el respaldo exacto para tu familia, tu casa,
+        tu carro y tu negocio — con las mejores compañías del país.
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+          <i class="fab fa-whatsapp"></i><span>Hablar con María Eugenia</span>
+        </a>
+        <a href="#servicios" class="btn btn-ghost">
+          <span>Ver servicios</span><i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== HERO VISUAL ===== -->
+    <div class="hero-visual">
+      <div class="orbit">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="ring" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/>
+          </defs>
+          <text><textPath href="#ring" startOffset="0">
+            ASESORÍA PERSONALIZADA · SOAT · HOGAR · VIDA · SALUD · VIAJES ·
+          </textPath></text>
+        </svg>
+        <div class="orbit-core">
+          <img src="MEDIA/RETRATO MARIA.png" alt="María Eugenia Restrepo · Asesora de seguros">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Desliza</span>
+    <span class="bar"></span>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee">
+  <div class="mq-track">
+    <span>SOAT</span><span>Autos</span><span>Hogar</span><span>Salud</span>
+    <span>Vida</span><span>Empresariales</span><span>Viajes</span><span>Pólizas</span>
+    <span>SOAT</span><span>Autos</span><span>Hogar</span><span>Salud</span>
+    <span>Vida</span><span>Empresariales</span><span>Viajes</span><span>Pólizas</span>
+  </div>
+</div>
+
+<!-- ================= SERVICIOS ================= -->
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="sec-num">01 — Servicios</span>
+        <h2 class="sec-title">Coberturas para <em>cada etapa</em><br>de tu vida</h2>
+      </div>
+      <p class="sec-desc">
+        Comparo varias compañías y te explico cada póliza en palabras claras,
+        sin letra menuda.
+      </p>
+    </div>
+
+    <div class="bento">
+
+      <article class="card big" data-reveal>
+        <div>
+          <div class="card-ico"><i class="fas fa-car"></i></div>
+          <i class="fas fa-arrow-up-right-from-square arrow"></i>
+        </div>
+        <div>
+          <h3>SOAT &amp; Autos</h3>
+          <p>Protección vial completa para tu vehículo: SOAT, todo riesgo, responsabilidad civil y asistencia en carretera.</p>
+          <span class="tag">Más solicitado</span>
+        </div>
+      </article>
+
+      <article class="card" data-reveal>
+        <div><div class="card-ico"><i class="fas fa-house-chimney"></i></div>
+        <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
+        <div><h3>Hogar</h3><p>Respaldo para tu casa y todo lo que hay dentro.</p></div>
+      </article>
+
+      <article class="card" data-reveal>
+        <div><div class="card-ico"><i class="fas fa-heart-pulse"></i></div>
+        <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
+        <div><h3>Salud</h3><p>Bienestar integral para ti y tu familia.</p></div>
+      </article>
+
+      <article class="card" data-reveal>
+        <div><div class="card-ico"><i class="fas fa-heart"></i></div>
+        <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
+        <div><h3>Vida</h3><p>Futuro asegurado para quienes más quieres.</p></div>
+      </article>
+
+      <article class="card" data-reveal>
+        <div><div class="card-ico"><i class="fas fa-briefcase"></i></div>
+        <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
+        <div><h3>Empresariales</h3><p>Tu negocio protegido ante cualquier imprevisto.</p></div>
+      </article>
+
+      <article class="card wide" data-reveal>
+        <div><div class="card-ico"><i class="fas fa-plane-departure"></i></div>
+        <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
+        <div><h3>Viajes</h3><p>Tranquilidad en cada destino, dentro y fuera del país.</p></div>
+      </article>
+
+      <article class="card accent wide" data-reveal>
+        <div>
+          <div class="card-ico"><i class="fas fa-comments"></i></div>
+        </div>
+        <div>
+          <h3>¿No sabes cuál necesitas?</h3>
+          <span class="mini"><i class="fas fa-arrow-right"></i> Escríbeme y lo revisamos juntos</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESO ================= -->
+<section class="light proceso" id="proceso">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="sec-num">02 — Cómo trabajamos</span>
+        <h2 class="sec-title">Un proceso <em>simple</em>,<br>sin complicaciones</h2>
+      </div>
+      <p class="sec-desc" style="color:#7A6A6E">
+        Cuatro pasos claros desde la primera llamada hasta el día
+        en que realmente necesitas tu póliza.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">01</span>
+        <h4>Escuchamos</h4>
+        <p>Entiendo tu situación, tu familia y qué es lo que realmente quieres proteger.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">02</span>
+        <h4>Comparamos</h4>
+        <p>Reviso varias compañías y te muestro la opción con mejor relación cobertura–precio.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">03</span>
+        <h4>Aseguramos</h4>
+        <p>Gestiono tu póliza de principio a fin. Tú solo firmas y quedas tranquilo.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">04</span>
+        <h4>Acompañamos</h4>
+        <p>Cuando llega un siniestro, estoy contigo para radicar y hacer seguimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUOTE ================= -->
+<section class="quote">
+  <div class="wrap" data-reveal>
+    <span class="quote-mark">"</span>
+    <p>Un seguro no se compra por miedo, se compra por <em>amor</em> a lo que construiste.</p>
+    <div class="quote-author">
+      <span class="av">
+        <img src="media/retrato-maria.png" alt="María Eugenia Restrepo">
+      </span>
+      <span>María Eugenia Restrepo · Asesora de seguros</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADICIONALES ================= -->
+<section class="extra" id="adicionales">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="sec-num">03 — Servicios adicionales</span>
+        <h2 class="sec-title">Muy pronto, <em>mucho más</em></h2>
+      </div>
+      <p class="sec-desc">Estamos construyendo un espacio para acompañarte más allá de la póliza.</p>
+    </div>
+
+    <div class="extra-grid">
+      <article class="panel" data-reveal>
+        <div>
+          <div class="panel-ico"><i class="fas fa-store"></i></div>
+          <h3>Tienda</h3>
+          <p>Accesorios, protecciones y productos seleccionados para tu vehículo y tu hogar.</p>
+        </div>
+        <span class="status"><span class="pip"></span> Próximamente</span>
+        <span class="panel-ghost">01</span>
+      </article>
+
+      <a href="cuentas.html" class="panel panel-link" data-reveal>
+        <div>
+          <div class="panel-ico"><i class="fas fa-newspaper"></i></div>
+          <h3>Artículos</h3>
+          <p>Consejos prácticos, novedades del sector y educación financiera para tu familia.</p>
+        </div>
+        <span class="status status-live"><span class="pip"></span> Ver artículos</span>
+        <i class="fas fa-arrow-up-right-from-square panel-arrow"></i>
+        <span class="panel-ghost">02</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box" data-reveal>
+      <h2>Hablemos de tu <em>tranquilidad</em></h2>
+      <p>Una llamada de 10 minutos es suficiente para saber qué necesitas y cuánto cuesta. Sin compromiso.</p>
+
+      <div class="cta-actions">
+        <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+          <i class="fab fa-whatsapp"></i><span>Escribir por WhatsApp</span>
+        </a>
+        <a href="tel:+573015891014" class="btn btn-ghost">
+          <span>Llamar ahora</span><i class="fas fa-phone"></i>
+        </a>
+      </div>
+
+      <div class="cta-phone">
+        <i class="fab fa-whatsapp"></i> 301 589 1014
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <span class="logo-mark"><i class="fas fa-shield-alt"></i></span>
+        <div>
+          <strong>María Eugenia Restrepo</strong>
+          <p>Asesoría en seguros y pólizas. Protección para tu familia, tu patrimonio y tu negocio.</p>
+        </div>
+      </div>
+
+      <div class="f-cols">
+        <div class="f-col">
+          <h5>Servicios</h5>
+          <a href="#servicios">SOAT &amp; Autos</a>
+          <a href="#servicios">Hogar</a>
+          <a href="#servicios">Salud y Vida</a>
+          <a href="#servicios">Empresariales</a>
+        </div>
+        <div class="f-col">
+          <h5>Contacto</h5>
+          <a href="https://wa.me/573015891014" target="_blank" rel="noopener">WhatsApp · 301 589 1014</a>
+          <a href="tel:+573015891014">Llamada directa</a>
+          <a href="cuentas.html">Tienda &amp; Artículos</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-credit">
+      <span class="f-copy">© 2026 · María Eugenia Restrepo · Protege lo que más amas</span>
+      <a class="f-made" href="https://whiatcompany.lat" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-code"></i>
+        Desarrollado por <strong>whiatcompany.lat</strong>
+        <i class="fas fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+(function(){
+  'use strict';
+
+  const body = document.body;
+  const loader = document.getElementById('loader');
+  const countEl = document.getElementById('ldCount');
+  const nav = document.getElementById('nav');
+  const progress = document.getElementById('progress');
+
+  /* ---------- PRELOADER ---------- */
+  let n = 0;
+  const total = 100;
+  const step = () => {
+    n += Math.random() * 9 + 3;
+    if (n >= total) n = total;
+    countEl.textContent = Math.floor(n);
+    if (n < total) {
+      setTimeout(step, 70);
+    } else {
+      setTimeout(finish, 380);
+    }
+  };
+  const finish = () => {
+    loader.classList.add('done');
+    body.classList.remove('is-loading');
+    body.classList.add('is-ready');
+    setTimeout(() => { loader.style.display = 'none'; }, 1100);
+  };
+  setTimeout(step, 500);
+
+  /* ---------- NAV STUCK + PROGRESS ---------- */
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('stuck', y > 30);
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- REVEAL ---------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const delay = (el.dataset.delay ? +el.dataset.delay : 0);
+        setTimeout(() => el.classList.add('in'), delay);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('[data-reveal], .card, .panel, .step').forEach((el, i) => {
+    if (el.classList.contains('card')) el.dataset.delay = (i % 6) * 70;
+    if (el.classList.contains('step')) el.dataset.delay = i * 110;
+    io.observe(el);
+  });
+
+  /* ---------- SPOTLIGHT EN CARDS ---------- */
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* ---------- CURSOR ---------- */
+  const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (fine) {
+    const cur = document.getElementById('cursor');
+    const dot = document.getElementById('cursorDot');
+    let mx = innerWidth / 2, my = innerHeight / 2;
+    let cx = mx, cy = my;
+
+    addEventListener('pointermove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+    });
+
+    (function loop(){
+      cx += (mx - cx) * 0.16;
+      cy += (my - cy) * 0.16;
+      cur.style.transform = `translate(${cx}px, ${cy}px)`;
+      requestAnimationFrame(loop);
+    })();
+
+    document.querySelectorAll('a, button, .card, .panel').forEach(el => {
+      el.addEventListener('pointerenter', () => cur.classList.add('grow'));
+      el.addEventListener('pointerleave', () => cur.classList.remove('grow'));
+    });
+  }
+
+  /* ---------- MAGNETIC BUTTONS ---------- */
+  if (fine) {
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('pointermove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.22}px, ${y * 0.34}px)`;
+      });
+      btn.addEventListener('pointerleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
