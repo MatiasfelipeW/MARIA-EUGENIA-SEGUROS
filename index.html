@@ -2,33 +2,31 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'none';">
 <title>María Eugenia Restrepo — Protege lo que más amas</title>
 
-<!-- ===== FAVICON (foto en la pestaña del navegador) ===== -->
+<!-- ===== FAVICON ===== -->
 <link rel="icon" type="image/png" href="MEDIA/RETRATO MARIA.png">
 <link rel="shortcut icon" type="image/png" href="MEDIA/RETRATO MARIA.png">
 <link rel="apple-touch-icon" href="MEDIA/RETRATO MARIA.png">
 
-<!-- ===== OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ===== -->
+<!-- ===== OPEN GRAPH ===== -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="María Eugenia Restrepo — Protege lo que más amas">
-<meta property="og:description" content="Asesoría personalizada en seguros: SOAT, autos, hogar, salud, vida, viajes y empresariales. Te acompaño a proteger lo que más amas.">
+<meta property="og:description" content="Asesoría personalizada en seguros: SOAT, autos, hogar, salud, vida, viajes y empresariales.">
 <meta property="og:image" content="MEDIA/RETRATO MARIA.png">
-<meta property="og:image:alt" content="María Eugenia Restrepo · Asesora de seguros">
 <meta property="og:url" content="https://tudominio.com/">
 <meta property="og:site_name" content="María Eugenia Restrepo">
 
 <!-- ===== TWITTER CARD ===== -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="María Eugenia Restrepo — Protege lo que más amas">
-<meta name="twitter:description" content="Asesoría personalizada en seguros: SOAT, autos, hogar, salud, vida, viajes y empresariales.">
+<meta name="twitter:description" content="Asesoría personalizada en seguros.">
 <meta name="twitter:image" content="MEDIA/RETRATO MARIA.png">
 
-<!-- ===== THEME COLOR ===== -->
 <meta name="theme-color" content="#1B2A4E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +35,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ============ TOKENS — PALETA FORMAL PREMIUM ============ */
+/* ============ TOKENS ============ */
 :root{
   --ink:#FAF8F5;
   --ink-2:#FFFFFF;
@@ -71,21 +69,18 @@ body{
   line-height:1.55;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
+  -webkit-tap-highlight-color: transparent;
 }
+
+html, body{ overscroll-behavior-y: none; }
+
 body.is-loading{overflow:hidden}
 
 img,svg{display:block;max-width:100%}
 img{
   -webkit-user-drag:none;
-  -khtml-user-drag:none;
-  -moz-user-drag:none;
-  -o-user-drag:none;
   user-drag:none;
-  pointer-events:none;
+  -webkit-touch-callout:none;
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
@@ -129,29 +124,6 @@ section{position:relative}
   90%{transform:translate(-3%,2%)}
 }
 
-/* ============ CURSOR ============ */
-.cursor,.cursor-dot{
-  position:fixed;top:0;left:0;
-  border-radius:50%;pointer-events:none;
-  z-index:9500;will-change:transform;
-}
-.cursor{
-  width:36px;height:36px;
-  border:1.5px solid rgba(27,42,78,.32);
-  transition:width .3s var(--ease),height .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease);
-  margin:-18px 0 0 -18px;
-}
-.cursor-dot{
-  width:5px;height:5px;background:var(--cream-2);
-  margin:-2.5px 0 0 -2.5px;
-}
-.cursor.grow{
-  width:70px;height:70px;margin:-35px 0 0 -35px;
-  background:var(--gold-soft);
-  border-color:transparent;
-}
-@media (hover:none),(pointer:coarse){.cursor,.cursor-dot{display:none}}
-
 /* ============ PROGRESS ============ */
 .progress{
   position:fixed;top:0;left:0;height:2px;width:0%;
@@ -165,7 +137,7 @@ section{position:relative}
   z-index:9800;
   background:var(--ink);
   display:grid;place-items:center;
-  transition:transform 1s var(--ease),opacity .6s ease;
+  transition:transform .7s var(--ease),opacity .4s ease;
 }
 #loader.done{transform:translateY(-101%);opacity:0;pointer-events:none}
 
@@ -260,6 +232,8 @@ section{position:relative}
 .nav-links a:hover{color:var(--cream-2)}
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
 
+.nav-right{display:flex;align-items:center;gap:12px}
+
 .btn-wa{
   display:inline-flex;align-items:center;gap:9px;
   padding:10px 20px;
@@ -273,7 +247,39 @@ section{position:relative}
 .btn-wa:hover{background:var(--cream-2);color:var(--ink);border-color:var(--cream-2)}
 .btn-wa:hover i{color:#25D366}
 
-@media(max-width:1024px){.nav-links{display:none}}
+/* ============ LANGUAGE SWITCHER ============ */
+.lang-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+  padding:3px;
+  border-radius:100px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.7);
+  position:relative;
+}
+.lang-switch button{
+  padding:7px 13px;
+  border-radius:100px;
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  color:var(--muted);
+  transition:color .3s var(--ease),background .3s var(--ease);
+  position:relative;
+  z-index:1;
+  line-height:1;
+  text-transform:uppercase;
+}
+.lang-switch button:hover{color:var(--cream-2)}
+.lang-switch button.active{
+  color:#fff;
+  background:linear-gradient(135deg,var(--cream-2) 0%,#2A3D68 100%);
+  box-shadow:0 4px 12px rgba(27,42,78,.25);
+}
+@media(max-width:1024px){
+  .nav-links{display:none}
+}
 
 /* ============ HERO ============ */
 .hero{
@@ -499,7 +505,7 @@ body.is-ready .scroll-cue{opacity:1}
 .sec-title em{font-style:italic;font-weight:300;color:var(--gold)}
 .sec-desc{max-width:34ch;font-size:.92rem;font-weight:300;color:var(--muted)}
 
-/* ============ SOBRE MARÍA (Maria2.jpeg) ============ */
+/* ============ SOBRE MARÍA ============ */
 .about{
   padding:110px 0 60px;
   position:relative;
@@ -711,7 +717,7 @@ body.is-ready .scroll-cue{opacity:1}
   .card.big,.card.wide{grid-column:span 1}
 }
 
-/* ============ VENDE TU CARRO (Vehiculos.jpeg) ============ */
+/* ============ VENDE TU CARRO ============ */
 .sell{
   padding:110px 0;
   position:relative;
@@ -823,48 +829,6 @@ body.is-ready .scroll-cue{opacity:1}
 }
 @media(max-width:480px){
   .sell-list{grid-template-columns:1fr;padding:18px 20px}
-}
-
-/* ============ PROCESO ============ */
-.proceso{padding:110px 0;margin-top:70px}
-.steps{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:0;margin-top:60px;border-top:1px solid rgba(27,42,78,.14);
-}
-.step{
-  padding:36px 26px 10px 0;
-  border-right:1px solid rgba(27,42,78,.14);
-  position:relative;
-  opacity:0;transform:translateY(26px);
-  transition:opacity .8s var(--ease),transform .8s var(--ease);
-}
-.step.in{opacity:1;transform:none}
-.step:last-child{border-right:0}
-.step-n{
-  font-family:'Fraunces',serif;
-  font-size:2.4rem;font-weight:300;
-  color:var(--gold);line-height:1;margin-bottom:20px;display:block;
-}
-.step h4{
-  font-family:'Fraunces',serif;font-weight:400;
-  font-size:1.18rem;letter-spacing:-.02em;margin-bottom:9px;
-  color:var(--cream-2);
-}
-.step p{font-size:.85rem;font-weight:300;color:#4A5878;line-height:1.6}
-.step::after{
-  content:'';position:absolute;top:-1px;left:0;height:1px;width:0;
-  background:var(--gold);transition:width .9s var(--ease) .15s;
-}
-.step.in::after{width:100%}
-
-@media(max-width:900px){
-  .steps{grid-template-columns:1fr 1fr}
-  .step:nth-child(2){border-right:0}
-  .step:nth-child(3),.step:nth-child(4){border-top:1px solid rgba(27,42,78,.14)}
-}
-@media(max-width:540px){
-  .steps{grid-template-columns:1fr}
-  .step{border-right:0;border-bottom:1px solid rgba(27,42,78,.14)}
 }
 
 /* ============ QUOTE ============ */
@@ -1134,36 +1098,12 @@ footer{border-top:1px solid var(--line);padding:60px 0 34px}
   [data-reveal],.card,.panel,.step{opacity:1!important;transform:none!important}
   .hero h1 .line>span{transform:none!important}
 }
-
-/* ============ PROTECCIONES VISUALES ============ */
-img{
-  -webkit-touch-callout:none;
-  -webkit-user-select:none;
-  user-select:none;
-  pointer-events:none;
-}
-a img, button img{
-  pointer-events:auto;
-}
 </style>
 </head>
 
 <body class="is-loading">
 
-<!-- PROTECCIÓN ANTI-IFRAME / CLICKJACKING -->
-<style id="antiClickjack">body{display:none !important;}</style>
-<script>
-  if (self === top) {
-    var antiClickjack = document.getElementById("antiClickjack");
-    antiClickjack.parentNode.removeChild(antiClickjack);
-  } else {
-    top.location = self.location;
-  }
-</script>
-
 <div class="grain"></div>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursorDot"></div>
 <div class="progress" id="progress"></div>
 
 <!-- ================= PRELOADER ================= -->
@@ -1174,7 +1114,7 @@ a img, button img{
       <path class="check" d="M34 58 L45 69 L68 45"/>
     </svg>
     <div class="ld-name">María Eugenia</div>
-    <div class="ld-sub">Asesoría en seguros</div>
+    <div class="ld-sub" data-i18n="loader.sub">Asesoría en seguros</div>
   </div>
   <div class="ld-count" id="ldCount">0</div>
 </div>
@@ -1184,17 +1124,23 @@ a img, button img{
   <div class="nav-inner">
     <a href="#top" class="logo">
       <span class="logo-mark"><i class="fas fa-shield-alt"></i></span>
-      <span class="logo-txt">María Eugenia Restrepo<em>Asesora de seguros</em></span>
+      <span class="logo-txt">María Eugenia Restrepo<em data-i18n="nav.role">Asesora de seguros</em></span>
     </a>
     <nav class="nav-links">
-      <a href="#sobre">Sobre mí</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#vende-tu-carro">Vende tu carro</a>
-      <a href="#adicionales">Tienda &amp; Artículos</a>
+      <a href="#sobre" data-i18n="nav.about">Sobre mí</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#vende-tu-carro" data-i18n="nav.sell">Vende tu carro</a>
+      <a href="#adicionales" data-i18n="nav.extra">Tienda &amp; Artículos</a>
     </nav>
-    <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn-wa">
-      <i class="fab fa-whatsapp"></i> 301 589 1014
-    </a>
+    <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="es" class="active">ES</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn-wa">
+        <i class="fab fa-whatsapp"></i> 301 589 1014
+      </a>
+    </div>
   </div>
 </header>
 
@@ -1205,37 +1151,36 @@ a img, button img{
 
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow"><span class="dot"></span> Asesoría personalizada · Colombia</div>
+      <div class="eyebrow"><span class="dot"></span> <span data-i18n="hero.eyebrow">Asesoría personalizada · Colombia</span></div>
 
       <h1>
-        <span class="line"><span>Protege</span></span>
-        <span class="line"><span>lo que más</span></span>
-        <span class="line"><span><em>amas</em>.</span></span>
+        <span class="line"><span data-i18n="hero.t1">Protege</span></span>
+        <span class="line"><span data-i18n="hero.t2">lo que más</span></span>
+        <span class="line"><span><em data-i18n="hero.t3">amas</em>.</span></span>
       </h1>
 
-      <p class="hero-sub">
+      <p class="hero-sub" data-i18n="hero.sub">
         Te acompaño a encontrar el respaldo exacto para tu familia, tu casa,
         tu carro y tu negocio — con las mejores compañías del país.
       </p>
 
       <div class="hero-cta">
-        <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn btn-primary magnetic">
-          <i class="fab fa-whatsapp"></i><span>Hablar con María Eugenia</span>
+        <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i><span data-i18n="hero.cta1">Hablar con María Eugenia</span>
         </a>
         <a href="#servicios" class="btn btn-ghost">
-          <span>Ver servicios</span><i class="fas fa-arrow-right"></i>
+          <span data-i18n="hero.cta2">Ver servicios</span><i class="fas fa-arrow-right"></i>
         </a>
       </div>
     </div>
 
-    <!-- ===== HERO VISUAL ===== -->
     <div class="hero-visual">
       <div class="orbit">
         <svg viewBox="0 0 200 200">
           <defs>
             <path id="ring" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/>
           </defs>
-          <text><textPath href="#ring" startOffset="0">
+          <text><textPath href="#ring" startOffset="0" data-i18n="hero.ring">
             ASESORÍA PERSONALIZADA · SOAT · HOGAR · VIDA · SALUD · VIAJES ·
           </textPath></text>
         </svg>
@@ -1247,7 +1192,7 @@ a img, button img{
   </div>
 
   <div class="scroll-cue">
-    <span>Desliza</span>
+    <span data-i18n="hero.scroll">Desliza</span>
     <span class="bar"></span>
   </div>
 </section>
@@ -1255,28 +1200,28 @@ a img, button img{
 <!-- ================= MARQUEE ================= -->
 <div class="marquee">
   <div class="mq-track">
-    <span>SOAT</span><span>Autos</span><span>Hogar</span><span>Salud</span>
-    <span>Vida</span><span>Empresariales</span><span>Viajes</span><span>Pólizas</span>
-    <span>SOAT</span><span>Autos</span><span>Hogar</span><span>Salud</span>
-    <span>Vida</span><span>Empresariales</span><span>Viajes</span><span>Pólizas</span>
+    <span>SOAT</span><span data-i18n="mq.cars">Autos</span><span data-i18n="mq.home">Hogar</span><span data-i18n="mq.health">Salud</span>
+    <span data-i18n="mq.life">Vida</span><span data-i18n="mq.biz">Empresariales</span><span data-i18n="mq.travel">Viajes</span><span data-i18n="mq.policies">Pólizas</span>
+    <span>SOAT</span><span data-i18n="mq.cars">Autos</span><span data-i18n="mq.home">Hogar</span><span data-i18n="mq.health">Salud</span>
+    <span data-i18n="mq.life">Vida</span><span data-i18n="mq.biz">Empresariales</span><span data-i18n="mq.travel">Viajes</span><span data-i18n="mq.policies">Pólizas</span>
   </div>
 </div>
 
-<!-- ================= SOBRE MARÍA (Maria2.jpeg) ================= -->
+<!-- ================= SOBRE MARÍA ================= -->
 <section class="about" id="sobre">
   <div class="wrap">
     <div class="about-grid">
       <div class="about-poster" data-reveal>
         <span class="about-badge">
-          <i class="fas fa-shield-alt"></i> Confianza que te respalda
+          <i class="fas fa-shield-alt"></i> <span data-i18n="about.badge">Confianza que te respalda</span>
         </span>
-        <img src="MEDIA/Maria2.jpeg" alt="María Eugenia Restrepo · Asesora de seguros y pólizas">
+        <img src="MEDIA/Maria2.jpeg" alt="María Eugenia Restrepo">
       </div>
 
       <div class="about-content" data-reveal>
-        <span class="sec-num">— Sobre mí</span>
-        <h2>Asesoría con <em>respaldo</em> real,<br>no solo una póliza</h2>
-        <p>
+        <span class="sec-num" data-i18n="about.num">— Sobre mí</span>
+        <h2 data-i18n-html="about.title">Asesoría con <em>respaldo</em> real,<br>no solo una póliza</h2>
+        <p data-i18n="about.p">
           Llevo años acompañando a familias y empresas colombianas a proteger
           lo que más valoran. Trabajo con las mejores compañías del país para
           darte cobertura, respaldo y atención personalizada cuando más lo necesitas.
@@ -1285,28 +1230,28 @@ a img, button img{
         <div class="about-pillars">
           <div class="pillar">
             <i class="fas fa-handshake"></i>
-            <h4>Respaldo de grandes compañías</h4>
-            <p>Trabajo con las aseguradoras más sólidas del país.</p>
+            <h4 data-i18n="about.p1.t">Respaldo de grandes compañías</h4>
+            <p data-i18n="about.p1.d">Trabajo con las aseguradoras más sólidas del país.</p>
           </div>
           <div class="pillar">
             <i class="fas fa-user-check"></i>
-            <h4>Atención personalizada</h4>
-            <p>Cada póliza se ajusta a tu caso, no a un formato genérico.</p>
+            <h4 data-i18n="about.p2.t">Atención personalizada</h4>
+            <p data-i18n="about.p2.d">Cada póliza se ajusta a tu caso, no a un formato genérico.</p>
           </div>
           <div class="pillar">
             <i class="fas fa-lightbulb"></i>
-            <h4>Soluciones a tu medida</h4>
-            <p>Te explico en palabras claras, sin letra menuda.</p>
+            <h4 data-i18n="about.p3.t">Soluciones a tu medida</h4>
+            <p data-i18n="about.p3.d">Te explico en palabras claras, sin letra menuda.</p>
           </div>
           <div class="pillar">
             <i class="fas fa-heart"></i>
-            <h4>Compromiso y honestidad</h4>
-            <p>Te acompaño antes, durante y después del siniestro.</p>
+            <h4 data-i18n="about.p4.t">Compromiso y honestidad</h4>
+            <p data-i18n="about.p4.d">Te acompaño antes, durante y después del siniestro.</p>
           </div>
         </div>
 
-        <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn btn-primary magnetic">
-          <i class="fab fa-whatsapp"></i><span>Conversemos</span>
+        <a href="https://wa.me/573015891014" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i><span data-i18n="about.cta">Conversemos</span>
         </a>
       </div>
     </div>
@@ -1318,10 +1263,10 @@ a img, button img{
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <div>
-        <span class="sec-num">01 — Servicios</span>
-        <h2 class="sec-title">Coberturas para <em>cada etapa</em><br>de tu vida</h2>
+        <span class="sec-num" data-i18n="services.num">01 — Servicios</span>
+        <h2 class="sec-title" data-i18n-html="services.title">Coberturas para <em>cada etapa</em><br>de tu vida</h2>
       </div>
-      <p class="sec-desc">
+      <p class="sec-desc" data-i18n="services.desc">
         Comparo varias compañías y te explico cada póliza en palabras claras,
         sin letra menuda.
       </p>
@@ -1335,40 +1280,40 @@ a img, button img{
           <i class="fas fa-arrow-up-right-from-square arrow"></i>
         </div>
         <div>
-          <h3>SOAT &amp; Autos</h3>
-          <p>Protección vial completa para tu vehículo: SOAT, todo riesgo, responsabilidad civil y asistencia en carretera.</p>
-          <span class="tag">Más solicitado</span>
+          <h3 data-i18n="services.s1.t">SOAT &amp; Autos</h3>
+          <p data-i18n="services.s1.d">Protección vial completa para tu vehículo: SOAT, todo riesgo, responsabilidad civil y asistencia en carretera.</p>
+          <span class="tag" data-i18n="services.s1.tag">Más solicitado</span>
         </div>
       </article>
 
       <article class="card" data-reveal>
         <div><div class="card-ico"><i class="fas fa-house-chimney"></i></div>
         <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
-        <div><h3>Hogar</h3><p>Respaldo para tu casa y todo lo que hay dentro.</p></div>
+        <div><h3 data-i18n="services.s2.t">Hogar</h3><p data-i18n="services.s2.d">Respaldo para tu casa y todo lo que hay dentro.</p></div>
       </article>
 
       <article class="card" data-reveal>
         <div><div class="card-ico"><i class="fas fa-heart-pulse"></i></div>
         <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
-        <div><h3>Salud</h3><p>Bienestar integral para ti y tu familia.</p></div>
+        <div><h3 data-i18n="services.s3.t">Salud</h3><p data-i18n="services.s3.d">Bienestar integral para ti y tu familia.</p></div>
       </article>
 
       <article class="card" data-reveal>
         <div><div class="card-ico"><i class="fas fa-heart"></i></div>
         <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
-        <div><h3>Vida</h3><p>Futuro asegurado para quienes más quieres.</p></div>
+        <div><h3 data-i18n="services.s4.t">Vida</h3><p data-i18n="services.s4.d">Futuro asegurado para quienes más quieres.</p></div>
       </article>
 
       <article class="card" data-reveal>
         <div><div class="card-ico"><i class="fas fa-briefcase"></i></div>
         <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
-        <div><h3>Empresariales</h3><p>Tu negocio protegido ante cualquier imprevisto.</p></div>
+        <div><h3 data-i18n="services.s5.t">Empresariales</h3><p data-i18n="services.s5.d">Tu negocio protegido ante cualquier imprevisto.</p></div>
       </article>
 
       <article class="card wide" data-reveal>
         <div><div class="card-ico"><i class="fas fa-plane-departure"></i></div>
         <i class="fas fa-arrow-up-right-from-square arrow"></i></div>
-        <div><h3>Viajes</h3><p>Tranquilidad en cada destino, dentro y fuera del país.</p></div>
+        <div><h3 data-i18n="services.s6.t">Viajes</h3><p data-i18n="services.s6.d">Tranquilidad en cada destino, dentro y fuera del país.</p></div>
       </article>
 
       <article class="card accent wide" data-reveal>
@@ -1376,8 +1321,8 @@ a img, button img{
           <div class="card-ico"><i class="fas fa-comments"></i></div>
         </div>
         <div>
-          <h3>¿No sabes cuál necesitas?</h3>
-          <span class="mini"><i class="fas fa-arrow-right"></i> Escríbeme y lo revisamos juntos</span>
+          <h3 data-i18n="services.s7.t">¿No sabes cuál necesitas?</h3>
+          <span class="mini"><i class="fas fa-arrow-right"></i> <span data-i18n="services.s7.d">Escríbeme y lo revisamos juntos</span></span>
         </div>
       </article>
 
@@ -1385,19 +1330,19 @@ a img, button img{
   </div>
 </section>
 
-<!-- ================= VENDE TU CARRO (Vehiculos.jpeg) ================= -->
+<!-- ================= VENDE TU CARRO ================= -->
 <section class="sell" id="vende-tu-carro">
   <div class="wrap">
     <div class="sell-grid">
       <div class="sell-poster" data-reveal>
-        <span class="sell-tag"><span class="pip"></span> Compramos tu carro</span>
-        <img src="MEDIA/Vehiculos.jpeg" alt="Vende tu carro · Renault, Chevrolet, Hyundai, Kia, Nissan, Suzuki, Mazda">
+        <span class="sell-tag"><span class="pip"></span> <span data-i18n="sell.tag">Compramos tu carro</span></span>
+        <img src="MEDIA/Vehiculos.jpeg" alt="Vende tu carro">
       </div>
 
       <div class="sell-content" data-reveal>
-        <span class="sec-num">— Servicio especial</span>
-        <h2>¿Estás vendiendo tu <em>carro</em>?</h2>
-        <p>
+        <span class="sec-num" data-i18n="sell.num">— Servicio especial</span>
+        <h2 data-i18n-html="sell.title">¿Estás vendiendo tu <em>carro</em>?</h2>
+        <p data-i18n="sell.p">
           Si tienes alguno de estos vehículos y estás pensando en venderlo,
           escríbeme por interno. Te hago una oferta directa, sin intermediarios
           y con trámite ágil.
@@ -1421,27 +1366,28 @@ a img, button img{
         </ul>
 
         <div class="sell-cta">
-          <a href="https://wa.me/573015891014?text=Hola%20Mar%C3%ADa%20Eugenia%2C%20quiero%20vender%20mi%20carro" target="_blank" rel="noopener" class="btn btn-primary magnetic">
-            <i class="fab fa-whatsapp"></i><span>Escríbeme por interno</span>
+          <a href="https://wa.me/573015891014?text=Hola%20Mar%C3%ADa%20Eugenia%2C%20quiero%20vender%20mi%20carro" target="_blank" rel="noopener" class="btn btn-primary">
+            <i class="fab fa-whatsapp"></i><span data-i18n="sell.cta1">Escríbeme por interno</span>
           </a>
           <a href="#servicios" class="btn btn-ghost">
-            <span>Ver servicios</span><i class="fas fa-arrow-right"></i>
+            <span data-i18n="sell.cta2">Ver servicios</span><i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <!-- ================= QUOTE ================= -->
 <section class="quote">
   <div class="wrap" data-reveal>
     <span class="quote-mark">"</span>
-    <p>Un seguro no se compra por miedo, se compra por <em>amor</em> a lo que construiste.</p>
+    <p data-i18n-html="quote.text">Un seguro no se compra por miedo, se compra por <em>amor</em> a lo que construiste.</p>
     <div class="quote-author">
       <span class="av">
         <img src="MEDIA/RETRATO MARIA.png" alt="María Eugenia Restrepo">
       </span>
-      <span>María Eugenia Restrepo · Asesora de seguros</span>
+      <span data-i18n="quote.author">María Eugenia Restrepo · Asesora de seguros</span>
     </div>
   </div>
 </section>
@@ -1451,30 +1397,30 @@ a img, button img{
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <div>
-        <span class="sec-num">03 — Servicios adicionales</span>
-        <h2 class="sec-title">Muy pronto, <em>mucho más</em></h2>
+        <span class="sec-num" data-i18n="extra.num">03 — Servicios adicionales</span>
+        <h2 class="sec-title" data-i18n-html="extra.title">Muy pronto, <em>mucho más</em></h2>
       </div>
-      <p class="sec-desc">Estamos construyendo un espacio para acompañarte más allá de la póliza.</p>
+      <p class="sec-desc" data-i18n="extra.desc">Estamos construyendo un espacio para acompañarte más allá de la póliza.</p>
     </div>
 
     <div class="extra-grid">
       <article class="panel" data-reveal>
         <div>
           <div class="panel-ico"><i class="fas fa-store"></i></div>
-          <h3>Tienda</h3>
-          <p>Accesorios, protecciones y productos seleccionados para tu vehículo y tu hogar.</p>
+          <h3 data-i18n="extra.shop.t">Tienda</h3>
+          <p data-i18n="extra.shop.d">Accesorios, protecciones y productos seleccionados para tu vehículo y tu hogar.</p>
         </div>
-        <span class="status"><span class="pip"></span> Próximamente</span>
+        <span class="status"><span class="pip"></span> <span data-i18n="extra.soon">Próximamente</span></span>
         <span class="panel-ghost">01</span>
       </article>
 
       <a href="cuentas.html" class="panel panel-link" data-reveal>
         <div>
           <div class="panel-ico"><i class="fas fa-newspaper"></i></div>
-          <h3>Artículos</h3>
-          <p>Cuentas on demand.</p>
+          <h3 data-i18n="extra.art.t">Artículos</h3>
+          <p data-i18n="extra.art.d">Cuentas on demand.</p>
         </div>
-        <span class="status status-live"><span class="pip"></span> Ver artículos</span>
+        <span class="status status-live"><span class="pip"></span> <span data-i18n="extra.art.cta">Ver artículos</span></span>
         <i class="fas fa-arrow-up-right-from-square panel-arrow"></i>
         <span class="panel-ghost">02</span>
       </a>
@@ -1490,33 +1436,33 @@ a img, button img{
         <span class="logo-mark"><i class="fas fa-shield-alt"></i></span>
         <div>
           <strong>María Eugenia Restrepo</strong>
-          <p>Asesoría en seguros y pólizas. Protección para tu familia, tu patrimonio y tu negocio.</p>
+          <p data-i18n="footer.brand">Asesoría en seguros y pólizas. Protección para tu familia, tu patrimonio y tu negocio.</p>
         </div>
       </div>
 
       <div class="f-cols">
         <div class="f-col">
-          <h5>Servicios</h5>
-          <a href="#servicios">SOAT &amp; Autos</a>
-          <a href="#servicios">Hogar</a>
-          <a href="#servicios">Salud y Vida</a>
-          <a href="#servicios">Empresariales</a>
-          <a href="#vende-tu-carro">Vende tu carro</a>
+          <h5 data-i18n="footer.services">Servicios</h5>
+          <a href="#servicios" data-i18n="footer.s1">SOAT &amp; Autos</a>
+          <a href="#servicios" data-i18n="footer.s2">Hogar</a>
+          <a href="#servicios" data-i18n="footer.s3">Salud y Vida</a>
+          <a href="#servicios" data-i18n="footer.s4">Empresariales</a>
+          <a href="#vende-tu-carro" data-i18n="footer.s5">Vende tu carro</a>
         </div>
         <div class="f-col">
-          <h5>Contacto</h5>
+          <h5 data-i18n="footer.contact">Contacto</h5>
           <a href="https://wa.me/573015891014" target="_blank" rel="noopener">WhatsApp · 301 589 1014</a>
-          <a href="tel:+573015891014">Llamada directa</a>
-          <a href="cuentas.html">Tienda &amp; Artículos</a>
+          <a href="tel:+573015891014" data-i18n="footer.call">Llamada directa</a>
+          <a href="cuentas.html" data-i18n="footer.extra">Tienda &amp; Artículos</a>
         </div>
       </div>
     </div>
 
     <div class="f-credit">
-      <span class="f-copy">© 2026 · María Eugenia Restrepo · Protege lo que más amas</span>
+      <span class="f-copy" data-i18n="footer.copy">© 2026 · María Eugenia Restrepo · Protege lo que más amas</span>
       <a class="f-made" href="https://whiatcompany.lat" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-code"></i>
-        Desarrollado por <strong>whiatcompany.lat</strong>
+        <span data-i18n="footer.made">Desarrollado por</span> <strong>whiatcompany.lat</strong>
         <i class="fas fa-arrow-up-right-from-square"></i>
       </a>
     </div>
@@ -1528,266 +1474,250 @@ a img, button img{
 (function(){
   'use strict';
 
-  /* ============================================================
-     CAPA DE SEGURIDAD 1: BLOQUEO DE CLIC DERECHO
-     ============================================================ */
-  document.addEventListener('contextmenu', function(e){
-    e.preventDefault();
-    return false;
-  }, { capture: true });
+  // -------- Anti-iframe simple --------
+  try {
+    if (window.self !== window.top) {
+      window.top.location = window.self.location;
+    }
+  } catch(e){ /* cross-origin: ignorar */ }
 
-  /* ============================================================
-     CAPA DE SEGURIDAD 2: BLOQUEO DE ATAJOS DE TECLADO
-     ============================================================ */
-  document.addEventListener('keydown', function(e){
-    // F12
-    if (e.key === 'F12' || e.keyCode === 123) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+Shift+I (DevTools)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+Shift+J (Console)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+Shift+C (Inspect element)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+U (Ver código fuente)
-    if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+S (Guardar página)
-    if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+P (Imprimir)
-    if (e.ctrlKey && (e.key === 'P' || e.key === 'p' || e.keyCode === 80)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+A (Seleccionar todo)
-    if (e.ctrlKey && (e.key === 'A' || e.key === 'a' || e.keyCode === 65)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+C (Copiar)
-    if (e.ctrlKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67) && !e.shiftKey) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+Shift+K (Firefox console)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'K' || e.key === 'k' || e.keyCode === 75)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Ctrl+Shift+E (Firefox network)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'E' || e.key === 'e' || e.keyCode === 69)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Meta+Alt+I (Mac DevTools)
-    if (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i')) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Meta+Alt+J (Mac Console)
-    if (e.metaKey && e.altKey && (e.key === 'J' || e.key === 'j')) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    // Meta+Alt+C (Mac Inspect)
-    if (e.metaKey && e.altKey && (e.key === 'C' || e.key === 'c')) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-  }, { capture: true });
+  var isDesktop = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  /* ============================================================
-     CAPA DE SEGURIDAD 3: BLOQUEO DE ARRASTRE DE IMÁGENES
-     ============================================================ */
+  if (isDesktop) {
+    document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    document.addEventListener('keydown', function(e){
+      var k = e.key || '';
+      var blockCombo =
+        (k === 'F12') ||
+        (e.ctrlKey && e.shiftKey && /^[ijc]$/i.test(k)) ||
+        (e.ctrlKey && /^[us]$/i.test(k)) ||
+        (e.metaKey && e.altKey && /^[ijc]$/i.test(k));
+      if (blockCombo) { e.preventDefault(); e.stopPropagation(); }
+    });
+  }
+
   document.addEventListener('dragstart', function(e){
-    if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
-      e.preventDefault();
-      return false;
-    }
-  }, { capture: true });
+    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+  });
 
   /* ============================================================
-     CAPA DE SEGURIDAD 4: BLOQUEO DE COPIADO Y CORTE
+     IDIOMA (ES / EN)
      ============================================================ */
-  document.addEventListener('copy', function(e){
-    e.preventDefault();
-    e.clipboardData.setData('text/plain', '© María Eugenia Restrepo · Contenido protegido');
-    return false;
-  }, { capture: true });
-
-  document.addEventListener('cut', function(e){
-    e.preventDefault();
-    return false;
-  }, { capture: true });
-
-  /* ============================================================
-     CAPA DE SEGURIDAD 5: DETECCIÓN DE DEVTOOLS
-     ============================================================ */
-  var devtoolsOpen = false;
-  var threshold = 160;
-
-  function detectDevTools(){
-    var widthDiff = window.outerWidth - window.innerWidth;
-    var heightDiff = window.outerHeight - window.innerHeight;
-
-    if (widthDiff > threshold || heightDiff > threshold) {
-      if (!devtoolsOpen) {
-        devtoolsOpen = true;
-        document.body.style.filter = 'blur(20px)';
-        document.body.style.pointerEvents = 'none';
-        document.body.style.userSelect = 'none';
-        document.title = '⚠ Acceso restringido';
-        var overlay = document.createElement('div');
-        overlay.id = 'security-overlay';
-        overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(15,27,51,.98);display:grid;place-items:center;color:#fff;font-family:Inter,sans-serif;text-align:center;padding:40px;';
-        overlay.innerHTML = '<div><i class="fas fa-shield-alt" style="font-size:4rem;color:#B8894A;margin-bottom:24px;display:block"></i><h2 style="font-family:Fraunces,serif;font-size:2rem;margin-bottom:16px">Acceso restringido</h2><p style="color:rgba(255,255,255,.7);max-width:400px;margin:0 auto">El contenido de esta página está protegido. Cierra las herramientas de desarrollador para continuar navegando.</p></div>';
-        document.body.appendChild(overlay);
-      }
-    } else {
-      if (devtoolsOpen) {
-        devtoolsOpen = false;
-        document.body.style.filter = '';
-        document.body.style.pointerEvents = '';
-        document.body.style.userSelect = '';
-        document.title = 'María Eugenia Restrepo — Protege lo que más amas';
-        var ov = document.getElementById('security-overlay');
-        if (ov) ov.remove();
-      }
+  var translations = {
+    es: {
+      'loader.sub': 'Asesoría en seguros',
+      'nav.role': 'Asesora de seguros',
+      'nav.about': 'Sobre mí',
+      'nav.services': 'Servicios',
+      'nav.sell': 'Vende tu carro',
+      'nav.extra': 'Tienda & Artículos',
+      'hero.eyebrow': 'Asesoría personalizada · Colombia',
+      'hero.t1': 'Protege',
+      'hero.t2': 'lo que más',
+      'hero.t3': 'amas',
+      'hero.sub': 'Te acompaño a encontrar el respaldo exacto para tu familia, tu casa, tu carro y tu negocio — con las mejores compañías del país.',
+      'hero.cta1': 'Hablar con María Eugenia',
+      'hero.cta2': 'Ver servicios',
+      'hero.ring': 'ASESORÍA PERSONALIZADA · SOAT · HOGAR · VIDA · SALUD · VIAJES ·',
+      'hero.scroll': 'Desliza',
+      'mq.cars': 'Autos',
+      'mq.home': 'Hogar',
+      'mq.health': 'Salud',
+      'mq.life': 'Vida',
+      'mq.biz': 'Empresariales',
+      'mq.travel': 'Viajes',
+      'mq.policies': 'Pólizas',
+      'about.badge': 'Confianza que te respalda',
+      'about.num': '— Sobre mí',
+      'about.title': 'Asesoría con <em>respaldo</em> real,<br>no solo una póliza',
+      'about.p': 'Llevo años acompañando a familias y empresas colombianas a proteger lo que más valoran. Trabajo con las mejores compañías del país para darte cobertura, respaldo y atención personalizada cuando más lo necesitas.',
+      'about.p1.t': 'Respaldo de grandes compañías',
+      'about.p1.d': 'Trabajo con las aseguradoras más sólidas del país.',
+      'about.p2.t': 'Atención personalizada',
+      'about.p2.d': 'Cada póliza se ajusta a tu caso, no a un formato genérico.',
+      'about.p3.t': 'Soluciones a tu medida',
+      'about.p3.d': 'Te explico en palabras claras, sin letra menuda.',
+      'about.p4.t': 'Compromiso y honestidad',
+      'about.p4.d': 'Te acompaño antes, durante y después del siniestro.',
+      'about.cta': 'Conversemos',
+      'services.num': '01 — Servicios',
+      'services.title': 'Coberturas para <em>cada etapa</em><br>de tu vida',
+      'services.desc': 'Comparo varias compañías y te explico cada póliza en palabras claras, sin letra menuda.',
+      'services.s1.t': 'SOAT & Autos',
+      'services.s1.d': 'Protección vial completa para tu vehículo: SOAT, todo riesgo, responsabilidad civil y asistencia en carretera.',
+      'services.s1.tag': 'Más solicitado',
+      'services.s2.t': 'Hogar',
+      'services.s2.d': 'Respaldo para tu casa y todo lo que hay dentro.',
+      'services.s3.t': 'Salud',
+      'services.s3.d': 'Bienestar integral para ti y tu familia.',
+      'services.s4.t': 'Vida',
+      'services.s4.d': 'Futuro asegurado para quienes más quieres.',
+      'services.s5.t': 'Empresariales',
+      'services.s5.d': 'Tu negocio protegido ante cualquier imprevisto.',
+      'services.s6.t': 'Viajes',
+      'services.s6.d': 'Tranquilidad en cada destino, dentro y fuera del país.',
+      'services.s7.t': '¿No sabes cuál necesitas?',
+      'services.s7.d': 'Escríbeme y lo revisamos juntos',
+      'sell.tag': 'Compramos tu carro',
+      'sell.num': '— Servicio especial',
+      'sell.title': '¿Estás vendiendo tu <em>carro</em>?',
+      'sell.p': 'Si tienes alguno de estos vehículos y estás pensando en venderlo, escríbeme por interno. Te hago una oferta directa, sin intermediarios y con trámite ágil.',
+      'sell.cta1': 'Escríbeme por interno',
+      'sell.cta2': 'Ver servicios',
+      'quote.text': 'Un seguro no se compra por miedo, se compra por <em>amor</em> a lo que construiste.',
+      'quote.author': 'María Eugenia Restrepo · Asesora de seguros',
+      'extra.num': '03 — Servicios adicionales',
+      'extra.title': 'Muy pronto, <em>mucho más</em>',
+      'extra.desc': 'Estamos construyendo un espacio para acompañarte más allá de la póliza.',
+      'extra.shop.t': 'Tienda',
+      'extra.shop.d': 'Accesorios, protecciones y productos seleccionados para tu vehículo y tu hogar.',
+      'extra.soon': 'Próximamente',
+      'extra.art.t': 'Artículos',
+      'extra.art.d': 'Cuentas on demand.',
+      'extra.art.cta': 'Ver artículos',
+      'footer.brand': 'Asesoría en seguros y pólizas. Protección para tu familia, tu patrimonio y tu negocio.',
+      'footer.services': 'Servicios',
+      'footer.s1': 'SOAT & Autos',
+      'footer.s2': 'Hogar',
+      'footer.s3': 'Salud y Vida',
+      'footer.s4': 'Empresariales',
+      'footer.s5': 'Vende tu carro',
+      'footer.contact': 'Contacto',
+      'footer.call': 'Llamada directa',
+      'footer.extra': 'Tienda & Artículos',
+      'footer.copy': '© 2026 · María Eugenia Restrepo · Protege lo que más amas',
+      'footer.made': 'Desarrollado por'
+    },
+    en: {
+      'loader.sub': 'Insurance advisory',
+      'nav.role': 'Insurance advisor',
+      'nav.about': 'About me',
+      'nav.services': 'Services',
+      'nav.sell': 'Sell your car',
+      'nav.extra': 'Shop & Articles',
+      'hero.eyebrow': 'Personalized advisory · Colombia',
+      'hero.t1': 'Protect',
+      'hero.t2': 'what you love',
+      'hero.t3': 'most',
+      'hero.sub': 'I help you find the right coverage for your family, your home, your car, and your business — with the best insurance companies in the country.',
+      'hero.cta1': 'Talk to María Eugenia',
+      'hero.cta2': 'View services',
+      'hero.ring': 'PERSONALIZED ADVISORY · SOAT · HOME · LIFE · HEALTH · TRAVEL ·',
+      'hero.scroll': 'Scroll',
+      'mq.cars': 'Cars',
+      'mq.home': 'Home',
+      'mq.health': 'Health',
+      'mq.life': 'Life',
+      'mq.biz': 'Business',
+      'mq.travel': 'Travel',
+      'mq.policies': 'Policies',
+      'about.badge': 'Trust that backs you',
+      'about.num': '— About me',
+      'about.title': 'Advisory with <em>real backing</em>,<br>not just a policy',
+      'about.p': 'For years I have helped Colombian families and companies protect what they value most. I work with the country\'s leading insurance companies to give you coverage, support, and personalized attention when you need it most.',
+      'about.p1.t': 'Backing from top companies',
+      'about.p1.d': 'I work with the most solid insurers in the country.',
+      'about.p2.t': 'Personalized attention',
+      'about.p2.d': 'Every policy is tailored to your case, not a generic template.',
+      'about.p3.t': 'Tailored solutions',
+      'about.p3.d': 'I explain everything in plain words, no fine print.',
+      'about.p4.t': 'Commitment and honesty',
+      'about.p4.d': 'I stand by you before, during, and after a claim.',
+      'about.cta': "Let's talk",
+      'services.num': '01 — Services',
+      'services.title': 'Coverage for <em>every stage</em><br>of your life',
+      'services.desc': 'I compare several companies and explain each policy in plain words, with no fine print.',
+      'services.s1.t': 'SOAT & Cars',
+      'services.s1.d': 'Complete road protection for your vehicle: SOAT, full coverage, liability, and roadside assistance.',
+      'services.s1.tag': 'Most requested',
+      'services.s2.t': 'Home',
+      'services.s2.d': 'Protection for your home and everything inside it.',
+      'services.s3.t': 'Health',
+      'services.s3.d': 'Comprehensive wellness for you and your family.',
+      'services.s4.t': 'Life',
+      'services.s4.d': 'A secure future for the people you love most.',
+      'services.s5.t': 'Business',
+      'services.s5.d': 'Your business protected against any setback.',
+      'services.s6.t': 'Travel',
+      'services.s6.d': 'Peace of mind at every destination, in and out of the country.',
+      'services.s7.t': "Don't know which one you need?",
+      'services.s7.d': "Write to me and we'll review it together",
+      'sell.tag': 'We buy your car',
+      'sell.num': '— Special service',
+      'sell.title': 'Are you selling your <em>car</em>?',
+      'sell.p': 'If you own any of these vehicles and are thinking of selling it, write to me privately. I will make you a direct offer, with no middlemen and a quick process.',
+      'sell.cta1': 'Write to me privately',
+      'sell.cta2': 'View services',
+      'quote.text': 'Insurance is not bought out of fear, it is bought out of <em>love</em> for what you have built.',
+      'quote.author': 'María Eugenia Restrepo · Insurance advisor',
+      'extra.num': '03 — Additional services',
+      'extra.title': 'Coming soon, <em>so much more</em>',
+      'extra.desc': "We're building a space to support you beyond the policy.",
+      'extra.shop.t': 'Shop',
+      'extra.shop.d': 'Accessories, protections, and selected products for your vehicle and home.',
+      'extra.soon': 'Coming soon',
+      'extra.art.t': 'Articles',
+      'extra.art.d': 'On-demand accounts.',
+      'extra.art.cta': 'View articles',
+      'footer.brand': 'Insurance and policy advisory. Protection for your family, your assets, and your business.',
+      'footer.services': 'Services',
+      'footer.s1': 'SOAT & Cars',
+      'footer.s2': 'Home',
+      'footer.s3': 'Health & Life',
+      'footer.s4': 'Business',
+      'footer.s5': 'Sell your car',
+      'footer.contact': 'Contact',
+      'footer.call': 'Direct call',
+      'footer.extra': 'Shop & Articles',
+      'footer.copy': '© 2026 · María Eugenia Restrepo · Protect what you love most',
+      'footer.made': 'Developed by'
     }
+  };
+
+  var currentLang = 'es';
+
+  function applyLang(lang){
+    var dict = translations[lang];
+    if (!dict) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    // Texto simple
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+
+    // Texto con HTML permitido
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-html');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    // Estado botones
+    document.querySelectorAll('.lang-switch button').forEach(function(btn){
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    try { localStorage.setItem('site-lang', lang); } catch(e){}
   }
 
-  setInterval(detectDevTools, 1000);
+  // Detección inicial: localStorage > navegador > ES
+  var savedLang = null;
+  try { savedLang = localStorage.getItem('site-lang'); } catch(e){}
+  var browserLang = (navigator.language || 'es').toLowerCase().indexOf('en') === 0 ? 'en' : 'es';
+  var initialLang = savedLang || browserLang;
 
-  /* ============================================================
-     CAPA DE SEGURIDAD 6: PROTECCIÓN CONTRA IFRAME
-     ============================================================ */
-  if (window.self !== window.top) {
-    window.top.location = window.self.location;
-  }
-
-  /* ============================================================
-     CAPA DE SEGURIDAD 7: BLOQUEO DE IMPRESIÓN
-     ============================================================ */
-  window.addEventListener('beforeprint', function(e){
-    e.preventDefault();
-    document.body.style.display = 'none';
+  document.querySelectorAll('.lang-switch button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      applyLang(btn.dataset.lang);
+    });
   });
 
-  window.addEventListener('afterprint', function(){
-    document.body.style.display = '';
-  });
+  applyLang(initialLang);
 
   /* ============================================================
-     CAPA DE SEGURIDAD 8: PROTECCIÓN CONTRA SELECCIÓN
-     ============================================================ */
-  document.addEventListener('selectstart', function(e){
-    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      return false;
-    }
-  }, { capture: true });
-
-  /* ============================================================
-     CAPA DE SEGURIDAD 9: OFUSCACIÓN DE CONSOLA
-     ============================================================ */
-  (function(){
-    var _con = {
-      log: console.log,
-      warn: console.warn,
-      error: console.error,
-      info: console.info,
-      debug: console.debug,
-      table: console.table,
-      dir: console.dir,
-      trace: console.trace,
-      clear: console.clear
-    };
-
-    var warning = [
-      '%c⚠ ALTO',
-      'color:#B8894A;font-size:48px;font-weight:bold;text-shadow:2px 2px 0 #1B2A4E;'
-    ].join('');
-
-    var msg = [
-      '%cEsta es una zona restringida.',
-      'color:#1B2A4E;font-size:18px;font-weight:bold;'
-    ].join('');
-
-    var msg2 = [
-      '%cSi alguien te pidió pegar algo aquí, es una estafa.',
-      'color:#6B7A99;font-size:14px;'
-    ].join('');
-
-    _con.log(warning);
-    _con.log(msg);
-    _con.log(msg2);
-
-    // Bloquear funciones de consola
-    console.log = function(){};
-    console.warn = function(){};
-    console.error = function(){};
-    console.info = function(){};
-    console.debug = function(){};
-    console.table = function(){};
-    console.dir = function(){};
-    console.trace = function(){};
-    console.clear = function(){};
-
-    // Restaurar solo para el mensaje inicial
-    setTimeout(function(){
-      console.log = _con.log;
-      console.warn = _con.warn;
-      console.error = _con.error;
-      console.info = _con.info;
-      console.debug = _con.debug;
-    }, 100);
-  })();
-
-  /* ============================================================
-     CAPA DE SEGURIDAD 10: PROTECCIÓN DE ENLACES EXTERNOS
-     ============================================================ */
-  document.querySelectorAll('a[target="_blank"]').forEach(function(link){
-    link.setAttribute('rel', 'noopener noreferrer');
-  });
-
-  /* ============================================================
-     CAPA DE SEGURIDAD 11: BLOQUEO DE ARRASTRE GLOBAL
-     ============================================================ */
-  document.addEventListener('drop', function(e){ e.preventDefault(); return false; }, { capture: true });
-  document.addEventListener('dragover', function(e){ e.preventDefault(); return false; }, { capture: true });
-
-  /* ============================================================
-     CÓDIGO ORIGINAL DE LA PÁGINA (INTACTO)
+     CÓDIGO ORIGINAL
      ============================================================ */
   var body = document.body;
   var loader = document.getElementById('loader');
@@ -1795,92 +1725,80 @@ a img, button img{
   var nav = document.getElementById('nav');
   var progress = document.getElementById('progress');
 
-  /* ---------- PRELOADER ---------- */
-  var n = 0;
-  var total = 100;
-  var step = function(){
-    n += Math.random() * 9 + 3;
+  /* ---------- PRELOADER con fallback ---------- */
+  var n = 0, total = 100, done = false;
+  function step(){
+    if (done) return;
+    n += Math.random() * 14 + 6;
     if (n >= total) n = total;
-    countEl.textContent = Math.floor(n);
-    if (n < total) {
-      setTimeout(step, 70);
-    } else {
-      setTimeout(finish, 380);
-    }
-  };
-  var finish = function(){
-    loader.classList.add('done');
+    if (countEl) countEl.textContent = Math.floor(n);
+    if (n < total) setTimeout(step, 60);
+    else setTimeout(finish, 250);
+  }
+  function finish(){
+    if (done) return;
+    done = true;
+    if (loader) loader.classList.add('done');
     body.classList.remove('is-loading');
     body.classList.add('is-ready');
-    setTimeout(function(){ loader.style.display = 'none'; }, 1100);
-  };
-  setTimeout(step, 500);
+    setTimeout(function(){ if (loader) loader.style.display = 'none'; }, 900);
+  }
+  setTimeout(finish, 2500);
+  setTimeout(step, 400);
 
   /* ---------- NAV STUCK + PROGRESS ---------- */
-  var onScroll = function(){
-    var y = window.scrollY;
-    nav.classList.toggle('stuck', y > 30);
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-  };
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY || window.pageYOffset;
+      if (nav) nav.classList.toggle('stuck', y > 30);
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (progress) progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      ticking = false;
+    });
+  }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   /* ---------- REVEAL ---------- */
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (e.isIntersecting) {
-        var el = e.target;
-        var delay = (el.dataset.delay ? +el.dataset.delay : 0);
-        setTimeout(function(){ el.classList.add('in'); }, delay);
-        io.unobserve(el);
-      }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          var el = e.target;
+          var delay = (el.dataset.delay ? +el.dataset.delay : 0);
+          setTimeout(function(){ el.classList.add('in'); }, delay);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-reveal], .card, .panel, .step').forEach(function(el, i){
+      if (el.classList.contains('card')) el.dataset.delay = (i % 6) * 70;
+      if (el.classList.contains('step')) el.dataset.delay = i * 110;
+      io.observe(el);
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-  document.querySelectorAll('[data-reveal], .card, .panel, .step').forEach(function(el, i){
-    if (el.classList.contains('card')) el.dataset.delay = (i % 6) * 70;
-    if (el.classList.contains('step')) el.dataset.delay = i * 110;
-    io.observe(el);
-  });
-
-  /* ---------- SPOTLIGHT EN CARDS ---------- */
-  document.querySelectorAll('.card').forEach(function(card){
-    card.addEventListener('pointermove', function(e){
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
-
-  /* ---------- CURSOR ---------- */
-  var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  if (fine) {
-    var cur = document.getElementById('cursor');
-    var dot = document.getElementById('cursorDot');
-    var mx = innerWidth / 2, my = innerHeight / 2;
-    var cx = mx, cy = my;
-
-    addEventListener('pointermove', function(e){
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = 'translate(' + mx + 'px, ' + my + 'px)';
-    });
-
-    (function loop(){
-      cx += (mx - cx) * 0.16;
-      cy += (my - cy) * 0.16;
-      cur.style.transform = 'translate(' + cx + 'px, ' + cy + 'px)';
-      requestAnimationFrame(loop);
-    })();
-
-    document.querySelectorAll('a, button, .card, .panel').forEach(function(el){
-      el.addEventListener('pointerenter', function(){ cur.classList.add('grow'); });
-      el.addEventListener('pointerleave', function(){ cur.classList.remove('grow'); });
+  } else {
+    document.querySelectorAll('[data-reveal], .card, .panel, .step').forEach(function(el){
+      el.classList.add('in');
     });
   }
 
-  /* ---------- MAGNETIC BUTTONS ---------- */
-  if (fine) {
+  /* ---------- SPOTLIGHT EN CARDS (solo desktop) ---------- */
+  if (isDesktop) {
+    document.querySelectorAll('.card').forEach(function(card){
+      card.addEventListener('pointermove', function(e){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    });
+  }
+
+  /* ---------- MAGNETIC BUTTONS (solo desktop) ---------- */
+  if (isDesktop) {
     document.querySelectorAll('.magnetic').forEach(function(btn){
       btn.addEventListener('pointermove', function(e){
         var r = btn.getBoundingClientRect();
